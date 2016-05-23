@@ -149,7 +149,7 @@ def create_mon_path(path, uid=-1, gid=-1):
 
 def create_done_path(done_path, uid=-1, gid=-1):
     """create a done file to avoid re-doing the mon deployment"""
-    with open(done_path, 'w'):
+    with open(done_path, 'wb'):
         pass
     os.chown(done_path, uid, gid);
 
@@ -157,7 +157,7 @@ def create_done_path(done_path, uid=-1, gid=-1):
 def create_init_path(init_path, uid=-1, gid=-1):
     """create the init path if it does not exist"""
     if not os.path.exists(init_path):
-        with open(init_path, 'w'):
+        with open(init_path, 'wb'):
             pass
         os.chown(init_path, uid, gid);
 
@@ -221,7 +221,7 @@ def write_file(path, content, mode=0o644, directory=None, uid=-1, gid=-1):
     if os.path.exists(path):
         # Delete file in case we are changing its mode
         os.unlink(path)
-    with os.fdopen(os.open(path, os.O_WRONLY | os.O_CREAT, mode), 'w') as f:
+    with os.fdopen(os.open(path, os.O_WRONLY | os.O_CREAT, mode), 'wb') as f:
         f.write(content)
     os.chown(path, uid, gid)
 

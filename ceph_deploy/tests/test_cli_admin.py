@@ -15,7 +15,7 @@ def test_bad_no_conf(tmpdir, cli):
             args=['ceph-deploy', 'admin', 'host1'],
             stderr=subprocess.PIPE,
             ) as p:
-            result = p.stderr.read()
+            result = p.stderr.read().decode('utf-8')
     assert 'No such file or directory: \'ceph.conf\'' in result
     assert err.value.status == 1
 
@@ -28,7 +28,7 @@ def test_bad_no_key(tmpdir, cli):
             args=['ceph-deploy', 'admin', 'host1'],
             stderr=subprocess.PIPE,
             ) as p:
-            result = p.stderr.read()
+            result = p.stderr.read().decode('utf-8')
     assert 'ceph.client.admin.keyring not found' in result
     assert err.value.status == 1
 
