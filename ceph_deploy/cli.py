@@ -103,6 +103,7 @@ def get_parser():
         # flag if the default release is being used
         p.set_defaults(default_release=False)
         fn(p)
+        p.required = True
     parser.set_defaults(
         cluster='ceph',
         )
